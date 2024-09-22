@@ -38,10 +38,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-            if [ "$RUNNER_OS" == "Linux" || "$RUNNER_OS" == "macOS" ]; then
+            if [[ "$RUNNER_OS" == "Linux" || "$RUNNER_OS" == "macOS" ]]; then
                 pwd
                 ls -la
-            elif [ "$RUNNER_OS" == "Windows" ]; then
+            elif [[ "$RUNNER_OS" == "Windows" ]]; then
               dir/w
             else
               echo "$RUNNER_OS not supported"
