@@ -38,6 +38,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd github-actions-example-1
           python -m pip install pytest .
 
 
