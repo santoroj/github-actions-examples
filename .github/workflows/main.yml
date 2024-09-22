@@ -38,8 +38,18 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd github-actions-example-1
-          python -m pip install pytest 
+            if [ "$RUNNER_OS" == "Linux" || "$RUNNER_OS" == "macOS" ]; then
+                pwd
+                ls -la
+            elif [ "$RUNNER_OS" == "Windows" ]; then
+              dir/w
+            else
+              echo "$RUNNER_OS not supported"
+              exit 1
+            fi
+            
+            cd github-actions-example-1
+            python -m pip install pytest 
 
 
       - name: Run Tests
