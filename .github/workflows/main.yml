@@ -36,20 +36,21 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install dependencies
+      - name: Check directories for testing (Linux/macOS)
+        if: runner.os == 'Linux' || runner.os == 'macOS'
         run: |
-            if [[ "$RUNNER_OS" == "Linux" || "$RUNNER_OS" == "macOS" ]]; then
-                pwd
-                ls -la
-            elif [[ "$RUNNER_OS" == "Windows" ]]; then
-              dir/w
-            else
-              echo "$RUNNER_OS not supported"
-              exit 1
-            fi
-            
-            cd github-actions-example-1
-            python -m pip install pytest 
+          pwd
+          ls -la
+          
+      - name: Check directories for testing (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          dir
+
+      - name: Install pytest
+        run: |    
+          cd github-actions-example-1
+          python -m pip install pytest
 
 
       - name: Run Tests
